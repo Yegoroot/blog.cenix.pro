@@ -2,8 +2,7 @@
   <v-container>
     <v-row>
       <v-col cols="12">
-        <v-text-field v-model="searchQuery" label="Поиск постов" prepend-icon="mdi-magnify" clearable
-          @input="handleSearch" />
+        <v-text-field v-model="store.searchQuery" label="Поиск постов" prepend-icon="mdi-magnify" clearable />
       </v-col>
     </v-row>
 
@@ -79,29 +78,15 @@
 import { ref, onMounted } from 'vue'
 import { usePostsStore } from '@/stores/posts'
 import postsData from '@/data.json'
-import debounce from 'lodash/debounce'
 
 const store = usePostsStore()
 const hoveredId = ref<string | null>(null)
-const searchQuery = ref('')
 const dialog = ref(false)
 const newPostName = ref('')
 
 onMounted(() => {
   store.initializePosts(postsData.posts)
 })
-
-const debouncedSearch = debounce((value: string) => {
-  store.setSearchQuery(value)
-}, 500)
-
-const handleSearch = (value: string) => {
-  if (!value) {
-    store.setSearchQuery('')
-    return
-  }
-  debouncedSearch(value)
-}
 
 const handleUpdate = (id: string, newName: string) => {
   store.updatePost(id, newName)
