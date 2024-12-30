@@ -6,8 +6,8 @@
       </v-col>
     </v-row>
 
-    <v-row>
-      <v-col cols="12">
+    <v-row class="mb-2 mt-4">
+      <v-col cols="12" class="d-flex justify-center">
         <v-btn color="primary" prepend-icon="mdi-plus" class="add-button" rounded="lg" elevation="2" @click="dialog = true">
           Добавить пост
         </v-btn>
@@ -125,7 +125,6 @@ const closeDialog = () => {
 .hovered-item {
   background: #e3f2fd !important;
   border-color: #90caf9;
-  transform: translateX(4px);
 }
 
 .post-title {
